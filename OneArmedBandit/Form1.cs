@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Threading;
 
 namespace OneArmedBandit
 {
@@ -84,15 +85,24 @@ namespace OneArmedBandit
 
             if (reelValue1 == reelValue2 && reelValue2 == reelValue3)
             {
-                outputLabel.Text = "Winner";
+                outputLabel.Text = "Winner!";
+                score = score + 3;
+                scoreDisplay.Text = Convert.ToString(score);
             }
             else
             {
-                outputLabel.Text = "Winner";
+                outputLabel.Text = "Play Again.";
+                score--;
+                scoreDisplay.Text = Convert.ToString(score);
             }
 
             // if score has reached 0 display "lose" message and set button enabled property to false
-
+            
+            if(score == 0)
+            {
+                spinButton.Enabled = false;
+                outputLabel.Text = "";
+            }
 
             // display updated score
 
